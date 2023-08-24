@@ -3,32 +3,31 @@ import "./App.css";
 import freeCodeCampLogo from "./imagenes/freecodecamp-logo.png";
 import Boton from "../src/componentes/Boton";
 import Pantalla from "./componentes/Pantalla";
-import BotonClear from "./componentes/BotonClear"
-import {useState} from 'react';
-import {evaluate} from 'mathjs'
+import BotonClear from "./componentes/BotonClear";
+import Logo from "./componentes/Logo.js";
+import { useState } from "react";
+import { evaluate } from "mathjs";
 function App() {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
 
-  const agregarInput = val => {
+  const agregarInput = (val) => {
     setInput(input + val);
   };
 
   const calcularResultado = () => {
-
-    if(input){
-    const resultado = evaluate(input);
-    const resultadoRedondeado = parseFloat(resultado.toFixed(3));
-    setInput(resultadoRedondeado.toString());
-  } else{
-    alert('Ingresa Valores para realizar la Operación');
-  }
+    if (input) {
+      const resultado = evaluate(input);
+      const resultadoRedondeado = parseFloat(resultado.toFixed(3));
+      setInput(resultadoRedondeado.toString());
+    } else {
+      alert("Ingresa Valores para realizar la Operación");
+    }
   };
-  
 
   return (
     <div className="App">
       <div className="freeCodeCamp-logo-contenedor">
-        <img src={freeCodeCampLogo} className="freeCodeCamp-Logo" alt="freeCodeCamp Logo" />
+        <Logo />
       </div>
 
       <div className="contenedor-calculadora">
@@ -58,10 +57,9 @@ function App() {
           <Boton manejarClic={agregarInput}>/</Boton>
         </div>
         <div className="fila">
-       
-          <BotonClear manejarClear={() => setInput('')}>Clear</BotonClear>
+          <BotonClear manejarClear={() => setInput("")}>Clear</BotonClear>
           <Boton manejarClic={agregarInput}>(</Boton>
-        <Boton manejarClic={agregarInput}>)</Boton>
+          <Boton manejarClic={agregarInput}>)</Boton>
         </div>
       </div>
     </div>
